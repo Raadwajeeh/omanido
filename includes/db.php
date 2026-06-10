@@ -2,8 +2,8 @@
 // PDO db connection
 $host = 'db';  // Dit moet overeenkomen met de servicenaam van MySQL in docker-compose.yml
 $db   = 'mydb'; // De naam van je database
-$user = 'user'; // Je MySQL-gebruikersnaam
-$pass = 'test'; // Je MySQL-wachtwoord
+$user = ''; // Je MySQL-gebruikersnaam
+$pass = ''; // Je MySQL-wachtwoord
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
