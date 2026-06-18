@@ -11,7 +11,9 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true){
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $ontvanger = $_POST['ontvanger'];
     $bedrag = $_POST['bedrag'];
-
+    if (!is_numeric($bedrag) || $bedrag <= 0) {
+        $error = "Bedrag moet een positief getal zijn";
+    }else {
     // Controleer of de ontvanger bestaat
     $stmt = $pdo->prepare("SELECT * FROM user WHERE username = ?");
     $stmt->execute([$ontvanger]);
@@ -55,7 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else {
         $error = "Deze gebruiker bestaat niet";
     }
-
+    }
 }
 
 include 'includes/db.php';
@@ -131,4 +133,4 @@ $saldo = $stmt->fetchColumn();
         </div>
     </div>
 </body>
-</html>
+</html> 
