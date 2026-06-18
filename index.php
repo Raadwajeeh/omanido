@@ -13,20 +13,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     $stmt = $pdo->prepare("SELECT * FROM user WHERE username = ?");
-$stmt->execute([$username]);
+    $stmt->execute([$username]);
 
-$user = $stmt->fetch();
+    $user = $stmt->fetch();
 
-if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $username;
-        $_SESSION['user'] = $user;
+    if ($user && password_verify($password, $user['password'])) {
+    $_SESSION['loggedin'] = true;
+    $_SESSION['username'] = $username;
+    $_SESSION['user'] = $user;
 
-        header("location: dashboard.php");
-        exit;
-    } else {
-        $error = "Gebruikersnaam of wachtwoord is onjuist";
-    }
+    header("location: dashboard.php");
+    exit;
+} else {
+    $error = "Gebruikersnaam of wachtwoord is onjuist";
+}
 
 }
 
